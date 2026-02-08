@@ -9,7 +9,8 @@ const messages = [
 
 // GET / - index page
 router.get("/", (req, res) => {
-  res.render("index", { title: "Mini Messageboard", messages });
+    //while rendering u make the messages available to the local object
+  res.render("index", { title: "Mini Messageboard", messages: messages  });
 });
 
 // GET /new - new message form
@@ -18,6 +19,7 @@ router.get("/new", (req, res) => {
 });
 
 // POST /new - handle form submission
+//capturing what the user sent
 router.post("/new", (req, res) => {
   const { messageText, messageUser } = req.body;
   messages.push({ text: messageText, user: messageUser, added: new Date() });
